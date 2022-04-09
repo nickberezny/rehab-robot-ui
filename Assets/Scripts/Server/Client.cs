@@ -84,7 +84,7 @@ public class Client : MonoBehaviour
 	/// <summary> 	
 	/// Send message to server using socket connection. 	
 	/// </summary> 	
-	public void SendMessage(string msg)
+	public void SendMessage2(string msg)
 	{
 		if (socketConnection == null)
 		{
