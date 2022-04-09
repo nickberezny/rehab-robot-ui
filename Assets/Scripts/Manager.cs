@@ -1,18 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Manager : MonoBehaviour
+public class Manager : Singleton<Manager>
 {
     public enum states { Init, WaitForConn, InitDevice, Running, Stop, Shutdown  }
     public states state = states.Init;
 
     public ConnectionMenu connectionMenu;
-
-    private void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
+    public RobotMenu robotMenu;
 
     public IEnumerator RecieveMessage(string msg)
     {
@@ -26,6 +23,11 @@ public class Manager : MonoBehaviour
                 break;
         }
         yield return null;
+    }
+
+    public void LoadSceneByName(string name)
+    {
+        SceneManager.LoadScene(name, LoadSceneMode.Single);
     }
 
     private void WaitForConnMessageHandler(string msg)

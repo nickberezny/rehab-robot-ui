@@ -6,19 +6,14 @@ using System.Text;
 using System.Threading;
 using UnityEngine;
 
-public class Client2 : MonoBehaviour
+public class Client2 : Singleton<Client2>
 {
-	[SerializeField] private Manager manager;
 
 	private TcpClient socketConnection;
 	private Thread clientReceiveThread;
 
 	private bool initMode = true;
 
-	private void Awake()
-	{
-		DontDestroyOnLoad(gameObject);
-	}
 
 	void Start()
 	{
@@ -46,7 +41,7 @@ public class Client2 : MonoBehaviour
 			Byte[] bytes = new Byte[1024];
 
 			SendTCPMessage("UI"); //notify server that this conn is UI 
-			manager.state = Manager.states.WaitForConn;
+			Manager.Instance.state = Manager.states.WaitForConn;
 			WaitForTCPMessage();
 		}
 		catch (SocketException socketException)
@@ -62,6 +57,11 @@ public class Client2 : MonoBehaviour
 
 		while (initMode)
 		{
+			if(!socketConnection.Connected)
+            {
+				Debug.Log("Connection closed");
+				break;
+            }
 			// Get a stream object for reading 				
 			using (NetworkStream stream = socketConnection.GetStream())
 			{
@@ -77,16 +77,12 @@ public class Client2 : MonoBehaviour
 					
 					Debug.Log("server message received as: " + serverMessage);
                     string[] data = serverMessage.Split(new string[] { "::" }, StringSplitOptions.None);
-					if(data[0] == "conn" && data[1] == "ROBOT")
+					if(data[0] == "conn")
                     {
-						SendTCPMessage("select::ROBOT");
-						UnityMainThreadDispatcher.Instance().Enqueue(manager.RecieveMessage(data[1]));
+						//SendTCPMessage("select::ROBOT");
+						UnityMainThreadDispatcher.Instance().Enqueue(Manager.Instance.RecieveMessage(data[1]));
 					}
-					else if(data[0] == "hi from robot")
-                    {
-						SendTCPMessage("ROBOT::hi from ui");
-						initMode = false;
-					}
+
 				}
 			}
 		}
