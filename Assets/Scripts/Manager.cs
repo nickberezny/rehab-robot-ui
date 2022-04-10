@@ -14,10 +14,14 @@ public class Manager : Singleton<Manager>
     public IEnumerator RecieveMessage(string msg)
     {
         //
-        switch(state)
+        Debug.Log(state);
+        switch (state)
         {
             case states.WaitForConn:
                 WaitForConnMessageHandler(msg);
+                break;
+            case states.InitDevice:
+                InitDevicesMessageHandler(msg);
                 break;
             default:
                 break;
@@ -30,6 +34,20 @@ public class Manager : Singleton<Manager>
         SceneManager.LoadScene(name, LoadSceneMode.Single);
     }
 
+
+    private void InitDevicesMessageHandler(string msg)
+    {
+        Debug.Log("Init Msg");
+        if (msg == "STARTTASK")
+        {
+            robotMenu.StartingTask();
+        }
+        else
+        {
+            robotMenu.FinishTask(msg);
+        }
+    }
+
     private void WaitForConnMessageHandler(string msg)
     {
         switch(msg)
@@ -37,6 +55,7 @@ public class Manager : Singleton<Manager>
             case "ROBOT":
                 Debug.Log("robot!");
                 connectionMenu.changeButtonInteractable(msg, true);
+                state = states.InitDevice;
                 break;
             case "OPENCV":
                 connectionMenu.changeButtonInteractable(msg, true);

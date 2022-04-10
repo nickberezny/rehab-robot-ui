@@ -82,6 +82,11 @@ public class Client2 : Singleton<Client2>
 						//SendTCPMessage("select::ROBOT");
 						UnityMainThreadDispatcher.Instance().Enqueue(Manager.Instance.RecieveMessage(data[1]));
 					}
+                    else
+                    {
+						UnityMainThreadDispatcher.Instance().Enqueue(Manager.Instance.RecieveMessage(data[0]));
+
+					}
 
 				}
 			}
