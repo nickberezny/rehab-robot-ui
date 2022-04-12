@@ -10,6 +10,7 @@ public class Manager : Singleton<Manager>
 
     public ConnectionMenu connectionMenu;
     public RobotMenu robotMenu;
+    public GameObject robotGuide;
 
     public IEnumerator RecieveMessage(string msg)
     {
@@ -22,6 +23,12 @@ public class Manager : Singleton<Manager>
                 break;
             case states.InitDevice:
                 InitDevicesMessageHandler(msg);
+                break;
+            case states.Running:
+                if(robotGuide)
+                {
+                    robotGuide.GetComponent<RobotGuide>().UpdatePosition(float.Parse(msg)/1000.0f);
+                }
                 break;
             default:
                 break;

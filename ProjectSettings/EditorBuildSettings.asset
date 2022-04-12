@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RobotMenu.unity
     guid: 4f6662e4096863641ae1c600d26a77a2
+  - enabled: 1
+    path: Assets/Scenes/RunScene.unity
+    guid: 8db68f1f5cdcdb14d879801ee78bf19c
   m_configObjects: {}

@@ -35,7 +35,14 @@ public class RobotMenu : MonoBehaviour
     public void ButtonMessage(string msg)
     {
         Client2.Instance.SendTCPMessage("ROBOT::" + msg);
+
+        if(msg == "RUN")
+        {
+            Manager.Instance.state = Manager.states.Running;
+            Manager.Instance.LoadSceneByName("RunScene");
+        }
     }
+
 
     public void StartingTask()
     {
