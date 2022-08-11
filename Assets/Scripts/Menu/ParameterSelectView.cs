@@ -10,9 +10,13 @@ public class ParameterSelectView : MonoBehaviour
     [SerializeField] private GameObject CUICView;
     [SerializeField] private RectTransform canvas;
 
+    int viewIndex = 0;
+    Dictionary<string, float> p = new Dictionary<string, float>();
+
     public void changeView(int newViewIndex)
     {
         Debug.Log(newViewIndex);
+        viewIndex = newViewIndex;
         switch(newViewIndex)
         {
             case 0:
@@ -28,4 +32,30 @@ public class ParameterSelectView : MonoBehaviour
                 
         }
     }
+
+    public Dictionary<string, float> GetParams()
+    {
+        p.Clear();
+
+        if(viewIndex == 0)
+        {
+            foreach(Slider s in AdmView.GetComponentsInChildren<Slider>())
+            {
+                p.Add(s.transform.parent.name, s.value);
+            }
+
+        }
+        else
+        {
+            foreach (Slider s in CUICView.GetComponentsInChildren<Slider>())
+            {
+                p.Add(s.transform.parent.name, s.value);
+            }
+
+        }
+
+        return p;
+    }
+
+
 }

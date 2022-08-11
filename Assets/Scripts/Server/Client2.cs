@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
@@ -8,6 +9,8 @@ using UnityEngine;
 
 public class Client2 : Singleton<Client2>
 {
+	private int port = 5000;
+	private string addr = "127.0.0.1";//"192.168.0.93"; //ip of host computer
 
 	private TcpClient socketConnection;
 	private Thread clientReceiveThread;
@@ -18,6 +21,8 @@ public class Client2 : Singleton<Client2>
 	void Start()
 	{
 		ConnectToTcpServer();
+		//if GetLocalIPv4()
+
 	}
 	private void ConnectToTcpServer()
 	{
@@ -35,33 +40,39 @@ public class Client2 : Singleton<Client2>
 
 	private void ListenForData()
 	{
-		try
+		bool connected = false;
+		while (!connected)
 		{
-			socketConnection = new TcpClient("localhost", 5000);
-			Byte[] bytes = new Byte[1024];
+			try
+			{
+				socketConnection = new TcpClient(addr, port);
+				Byte[] bytes = new Byte[1024];
 
-			SendTCPMessage("UI"); //notify server that this conn is UI 
-			Manager.Instance.state = Manager.states.WaitForConn;
-			WaitForTCPMessage();
+				SendTCPMessage("UI"); //notify server that this conn is UI 
+				Manager.Instance.state = Manager.states.WaitForConn;
+				WaitForTCPMessage();
+				connected = true;
+			}
+			catch (SocketException socketException)
+			{
+				Debug.Log("Socket exception: " + socketException);
+			}
 		}
-		catch (SocketException socketException)
-		{
-			Debug.Log("Socket exception: " + socketException);
-		}
+
 
 	}
 
 	private void WaitForTCPMessage()
-    {
+	{
 		Byte[] bytes = new Byte[1024];
 
 		while (initMode)
 		{
-			if(!socketConnection.Connected)
-            {
+			if (!socketConnection.Connected)
+			{
 				Debug.Log("Connection closed");
 				break;
-            }
+			}
 			// Get a stream object for reading 				
 			using (NetworkStream stream = socketConnection.GetStream())
 			{
@@ -74,16 +85,16 @@ public class Client2 : Singleton<Client2>
 					// Convert byte array to string message. 						
 					string serverMessage = Encoding.ASCII.GetString(incommingData);
 					//manager.RecieveMessage(serverMessage);
-					
+
 					Debug.Log("server message received as: " + serverMessage);
-                    string[] data = serverMessage.Split(new string[] { "::" }, StringSplitOptions.None);
-					if(data[0] == "conn")
-                    {
+					string[] data = serverMessage.Split(new string[] { "::" }, StringSplitOptions.None);
+					if (data[0] == "conn")
+					{
 						//SendTCPMessage("select::ROBOT");
 						UnityMainThreadDispatcher.Instance().Enqueue(Manager.Instance.RecieveMessage(data[1]));
 					}
-                    else
-                    {
+					else
+					{
 						UnityMainThreadDispatcher.Instance().Enqueue(Manager.Instance.RecieveMessage(data[0]));
 
 					}
@@ -120,4 +131,18 @@ public class Client2 : Singleton<Client2>
 		}
 	}
 
+	private string GetLocalIPv4()
+	{
+		var host = Dns.GetHostEntry(Dns.GetHostName());
+		foreach (var ip in host.AddressList)
+		{
+			if (ip.AddressFamily == AddressFamily.InterNetwork)
+			{
+				return ip.ToString();
+			}
+
+		}
+
+		return "";
+	}
 }

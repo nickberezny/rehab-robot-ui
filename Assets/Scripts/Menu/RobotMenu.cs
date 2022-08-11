@@ -8,9 +8,12 @@ public class RobotMenu : MonoBehaviour
     bool isReady = false;
     bool isWaitingForResponse = false;
     Dictionary<string, bool> finishedTasks = new Dictionary<string, bool>();
+    Dictionary<string, float> p = new Dictionary<string, float>();
     Button[] buttons;
 
     [SerializeField] private RectTransform canvas;
+    [SerializeField] private ParameterSelectView paramView;
+    [SerializeField] private TrajectorySelectView trajView;
 
     private void Start()
     {
@@ -40,6 +43,10 @@ public class RobotMenu : MonoBehaviour
         {
             Manager.Instance.state = Manager.states.Running;
             Manager.Instance.LoadSceneByName("RunScene");
+        }
+        else if(msg == "SET")
+        {
+            GetParams();
         }
     }
 
@@ -86,6 +93,30 @@ public class RobotMenu : MonoBehaviour
         {
             if (b.name == "Home" || b.name == "Set" || b.name == "Calibrate") b.interactable = setVal;
         }
+    }
+
+    private void GetParams()
+    {
+        p.Clear();
+        p = paramView.GetParams();
+
+        Dictionary<string, float> p2 = new Dictionary<string, float>();
+
+        string sendData = "ROBOT::";
+
+        p2 = trajView.GetParams();
+
+        foreach(string k in p2.Keys)
+        {
+            p.Add(k, p2[k]);
+        }
+        foreach (string s in p.Keys)
+        {
+            Debug.Log(s + p[s]);
+            sendData = sendData.Insert(sendData.Length, s + p[s] + ",");
+        }
+        Debug.Log(sendData);
+        Client2.Instance.SendTCPMessage(sendData);
     }
 
 }
