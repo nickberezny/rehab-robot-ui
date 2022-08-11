@@ -22,12 +22,12 @@ public class ParameterSelectView : MonoBehaviour
             case 0:
                 CUICView.SetActive(false);
                 AdmView.SetActive(true);
-                LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
+                //LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
                 break;
             case 1:
                 AdmView.SetActive(false);
                 CUICView.SetActive(true);;
-                LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
+                //LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
                 break;
                 
         }
