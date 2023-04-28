@@ -10,8 +10,21 @@ public class TrajectorySelectView : MonoBehaviour
     [SerializeField] private GameObject VelView;
     [SerializeField] private RectTransform canvas;
 
-    int viewIndex = 0;
+    public int viewIndex = 0;
     Dictionary<string, float> p = new Dictionary<string, float>();
+
+    List<GameObject> childrenParams = new List<GameObject>(); 
+    List<string> StaticParams = new List<string> {"x0","Home"};
+    List<string> TrajParams = new List<string> {"vmax","Home"};
+
+    private void Awake()
+    {
+        for(int i = 0; i < StepView.transform.childCount; i++)
+        {   
+            childrenParams.Add(StepView.transform.GetChild(i).gameObject);
+        }
+    }
+
 
     public void changeView(int newViewIndex)
     {
@@ -20,13 +33,13 @@ public class TrajectorySelectView : MonoBehaviour
         switch (newViewIndex)
         {
             case 0:
-                VelView.SetActive(false);
-                StepView.SetActive(true);
+		        //Debug.Log(CUICView.transform.GetChild(1));
+                SetParamsFromMode(StaticParams);
                 LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
                 break;
             case 1:
-                StepView.SetActive(false);
-                VelView.SetActive(true); ;
+		        //Debug.Log(CUICView.transform.GetChild(1));
+                SetParamsFromMode(TrajParams);
                 LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
                 break;
 
@@ -43,6 +56,12 @@ public class TrajectorySelectView : MonoBehaviour
             {
                 p.Add(s.transform.parent.name, s.value);
             }
+	    
+	    Toggle toggle = StepView.GetComponentInChildren<Toggle>();
+	    if(toggle.isOn)
+	    	p.Add(toggle.transform.name, 1);
+	    else
+		p.Add(toggle.transform.name, 0);
 
         }
         else
@@ -56,4 +75,20 @@ public class TrajectorySelectView : MonoBehaviour
 
         return p;
     }
+
+    private void SetParamsFromMode(List<string> ParamList)
+    {
+        foreach(GameObject go in childrenParams)
+        {
+            if(!ParamList.Contains(go.name))
+            {
+                go.SetActive(false);
+            }
+            else
+            {
+                go.SetActive(true);
+            }
+        }
+    }
+
 }

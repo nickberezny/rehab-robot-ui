@@ -33,6 +33,7 @@ public class RobotMenu : MonoBehaviour
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
 
+
     }
 
     public void ButtonMessage(string msg)
@@ -93,6 +94,8 @@ public class RobotMenu : MonoBehaviour
         {
             if (b.name == "Home" || b.name == "Set" || b.name == "Calibrate") b.interactable = setVal;
         }
+
+	LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
     }
 
     private void GetParams()
@@ -115,8 +118,13 @@ public class RobotMenu : MonoBehaviour
             Debug.Log(s + p[s]);
             sendData = sendData.Insert(sendData.Length, s + p[s] + ",");
         }
+
+        sendData = sendData.Insert(sendData.Length,"controlMode" + paramView.viewIndex.ToString()+",");
+        sendData = sendData.Insert(sendData.Length,"trajMode" + trajView.viewIndex.ToString()+",");
         Debug.Log(sendData);
         Client2.Instance.SendTCPMessage(sendData);
+
+	//Database.Instance.data = p;
     }
 
 }
