@@ -56,12 +56,14 @@ public class TrajectorySelectView : MonoBehaviour
             {
                 p.Add(s.transform.parent.name, s.value);
             }
-	    
-	    Toggle toggle = StepView.GetComponentInChildren<Toggle>();
-	    if(toggle.isOn)
-	    	p.Add(toggle.transform.name, 1);
-	    else
-		p.Add(toggle.transform.name, 0);
+
+            foreach (Toggle t in StepView.GetComponentsInChildren<Toggle>())
+            {
+                p.Add(t.transform.name, t.isOn ? 1 : 0);
+                Debug.Log("toggle added " + t.transform.parent.name);
+            }
+
+   
 
         }
         else
@@ -69,6 +71,11 @@ public class TrajectorySelectView : MonoBehaviour
             foreach (Slider s in VelView.GetComponentsInChildren<Slider>())
             {
                 p.Add(s.transform.parent.name, s.value);
+            }
+
+            foreach (Toggle t in StepView.GetComponentsInChildren<Toggle>())
+            {
+                p.Add(t.transform.parent.name, t.isOn ? 1 : 0);
             }
 
         }

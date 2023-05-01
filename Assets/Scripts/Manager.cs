@@ -32,7 +32,7 @@ public class Manager : Singleton<Manager>
 		}
                 else if(robotGuide)
                 {
-                    robotGuide.GetComponent<RobotGuide>().UpdatePosition(float.Parse(msg)/1000.0f);
+                    robotGuide.GetComponent<RobotGuide>().UpdatePosition(float.Parse(msg)/0.3f);
                 }
                 break;
             default:
