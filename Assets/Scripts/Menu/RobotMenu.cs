@@ -43,7 +43,8 @@ public class RobotMenu : MonoBehaviour
         if(msg == "RUN")
         {
             Manager.Instance.state = Manager.states.Running;
-            Manager.Instance.LoadSceneByName("RunScene");
+            //load scene based on mode ->
+            Manager.Instance.LoadSceneByName("RobotGuide");
         }
         else if(msg == "SET")
         {

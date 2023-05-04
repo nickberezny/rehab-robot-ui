@@ -25,11 +25,11 @@ public class Manager : Singleton<Manager>
                 InitDevicesMessageHandler(msg);
                 break;
             case states.Running:
-		if(msg == "STOP")
-		{
-			state = states.InitDevice;
-			LoadSceneByName("RobotMenu");
-		}
+		        if(msg == "STOP")
+		        {
+			        state = states.InitDevice;
+			        LoadSceneByName("RobotMenu");
+		        }
                 else if(robotGuide)
                 {
                     robotGuide.GetComponent<RobotGuide>().UpdatePosition(float.Parse(msg)/0.3f);
