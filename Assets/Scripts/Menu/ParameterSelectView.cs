@@ -63,21 +63,9 @@ public class ParameterSelectView : MonoBehaviour
     {
         p.Clear();
 
-        if(viewIndex == 0)
+        foreach (Slider s in CUICView.GetComponentsInChildren<Slider>())
         {
-            foreach(Slider s in AdmView.GetComponentsInChildren<Slider>())
-            {
-                p.Add(s.transform.parent.name, s.value);
-            }
-
-        }
-        else
-        {
-            foreach (Slider s in CUICView.GetComponentsInChildren<Slider>())
-            {
-                p.Add(s.transform.parent.name, s.value);
-            }
-
+            p.Add(s.transform.parent.name, s.value);
         }
 
         return p;

@@ -14,8 +14,9 @@ public class TrajectorySelectView : MonoBehaviour
     Dictionary<string, float> p = new Dictionary<string, float>();
 
     List<GameObject> childrenParams = new List<GameObject>(); 
-    List<string> StaticParams = new List<string> {"x0","Home"};
-    List<string> TrajParams = new List<string> {"vmax","Home"};
+    List<string> StaticParams = new List<string> {"x0","Home","recordEMG"};
+    List<string> TrajParams = new List<string> {"vmax","Home","recordEMG"};
+    List<string> StaticRandomParams = new List<string> {"Home","recordEMG"};
 
     private void Awake()
     {
@@ -42,6 +43,11 @@ public class TrajectorySelectView : MonoBehaviour
                 SetParamsFromMode(TrajParams);
                 LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
                 break;
+            case 2:
+		        //Debug.Log(CUICView.transform.GetChild(1));
+                SetParamsFromMode(StaticRandomParams);
+                LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
+                break;
 
         }
     }
@@ -50,34 +56,16 @@ public class TrajectorySelectView : MonoBehaviour
     {
         p.Clear();
 
-        if (viewIndex == 0)
+  
+        foreach (Slider s in StepView.GetComponentsInChildren<Slider>())
         {
-            foreach (Slider s in StepView.GetComponentsInChildren<Slider>())
-            {
-                p.Add(s.transform.parent.name, s.value);
-            }
-
-            foreach (Toggle t in StepView.GetComponentsInChildren<Toggle>())
-            {
-                p.Add(t.transform.name, t.isOn ? 1 : 0);
-                Debug.Log("toggle added " + t.transform.parent.name);
-            }
-
-   
-
+            p.Add(s.transform.parent.name, s.value);
         }
-        else
+
+        foreach (Toggle t in StepView.GetComponentsInChildren<Toggle>())
         {
-            foreach (Slider s in VelView.GetComponentsInChildren<Slider>())
-            {
-                p.Add(s.transform.parent.name, s.value);
-            }
-
-            foreach (Toggle t in StepView.GetComponentsInChildren<Toggle>())
-            {
-                p.Add(t.transform.parent.name, t.isOn ? 1 : 0);
-            }
-
+            p.Add(t.transform.name, t.isOn ? 1 : 0);
+            Debug.Log("toggle added " + t.transform.parent.name);
         }
 
         return p;
