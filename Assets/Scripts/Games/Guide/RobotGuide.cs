@@ -19,8 +19,8 @@ public class RobotGuide : MonoBehaviour
         transform.position = xs;
     }
 
-    public void UpdatePosition(float normedPos)
+    public void UpdatePosition(float x, float x0)
     {
-        transform.position = normedPos * dir + xs;
+        transform.position = x * dir + xs;
     }
 }

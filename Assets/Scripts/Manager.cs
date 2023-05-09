@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Text;
+using System;
 
 public class Manager : Singleton<Manager>
 {
@@ -32,7 +34,8 @@ public class Manager : Singleton<Manager>
 		        }
                 else if(robotGuide)
                 {
-                    robotGuide.GetComponent<RobotGuide>().UpdatePosition(float.Parse(msg)/0.3f);
+                    string[] data = msg.Split(new string[] { "," }, StringSplitOptions.None);
+                    robotGuide.GetComponent<RobotGuide>().UpdatePosition(float.Parse(data[0]), float.Parse(data[1]));
                 }
                 break;
             default:
