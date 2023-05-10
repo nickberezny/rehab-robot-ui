@@ -1346,6 +1346,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPos: {fileID: 188001655}
   endPos: {fileID: 979820321}
+  robotPos: {fileID: 1888060777}
+  desiredPos: {fileID: 1520000360}
 --- !u!1 &1991197513
 GameObject:
   m_ObjectHideFlags: 0
