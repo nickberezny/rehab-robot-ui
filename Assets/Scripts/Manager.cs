@@ -12,7 +12,7 @@ public class Manager : Singleton<Manager>
 
     public ConnectionMenu connectionMenu;
     public RobotMenu robotMenu;
-    public GameObject robotGuide;
+    public RobotDataManager robotDataManager;
 
     public IEnumerator RecieveMessage(string msg)
     {
@@ -32,10 +32,10 @@ public class Manager : Singleton<Manager>
 			        state = states.InitDevice;
 			        LoadSceneByName("RobotMenu");
 		        }
-                else if(robotGuide)
+                else
                 {
                     string[] data = msg.Split(new string[] { "," }, StringSplitOptions.None);
-                    robotGuide.GetComponent<RobotGuide>().UpdatePosition(float.Parse(data[0]), float.Parse(data[1]));
+                    robotDataManager.UpdatePosition(float.Parse(data[0]), float.Parse(data[1]));
                 }
                 break;
             default:
