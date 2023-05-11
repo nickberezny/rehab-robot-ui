@@ -16,7 +16,7 @@ public class TrajectorySelectView : MonoBehaviour
     List<GameObject> childrenParams = new List<GameObject>(); 
     List<string> StaticParams = new List<string> {"x0","Home","recordEMG"};
     List<string> TrajParams = new List<string> {"vmax","Home","recordEMG"};
-    List<string> StaticRandomParams = new List<string> {"Home","recordEMG"};
+    List<string> StaticRandomParams = new List<string> {"Home","recordEMG","Rate"};
 
     private void Awake()
     {
