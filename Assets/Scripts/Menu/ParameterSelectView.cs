@@ -17,7 +17,7 @@ public class ParameterSelectView : MonoBehaviour
     List<string> ImpParams = new List<string> {"mass","damp","Md","Bd","Kd"};
     List<string> AdmParams = new List<string> {"kp","kv","Md","Bd","Kd"};
     List<string> UICParams = new List<string> {"kp","kv","Md","Bd","Kd","delta","alpha"};
-    List<string> StochParams = new List<string> {"Fmax","PhaseTime","NumPositions"};
+    List<string> StochParams = new List<string> {"kp","kv","Fmax","PhaseTime","NumPositions","StochasticStepTime"};
 
     private void Awake()
     {

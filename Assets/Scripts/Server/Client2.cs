@@ -107,6 +107,7 @@ public class Client2 : Singleton<Client2>
 
 	public void SendTCPMessage(string msg)
 	{
+	
 		if (socketConnection == null)
 		{
 			return;
