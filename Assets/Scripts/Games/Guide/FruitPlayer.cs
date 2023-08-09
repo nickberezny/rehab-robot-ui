@@ -26,17 +26,32 @@ public class FruitPlayer : MonoBehaviour
         xs = transform.position + startPos.position;
         xf = transform.position + endPos.position;
         dir = (endPos.position - startPos.position);
+        StartCoroutine(GenerateFruit());
 
+        Debug.Log(xf);
     }
 
     private void Update()
     {
-        robotPos.position = xs + robotDataManager.x * (xf - xs);
+        //robotPos.position = xs + robotDataManager.x * (xf - xs);
         //generator.
+        /*
         if(x0 != robotDataManager.x0)
         {
             x0 = robotDataManager.x0;
             generator.createFruit(x0);
         }
+        */
     }
+
+    IEnumerator GenerateFruit()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(5);
+            generator.createFruit(Random.Range(0.0f,1.0f)*(xf.x-xs.x)+xs.x);
+        }
+        
+    }
+
 }

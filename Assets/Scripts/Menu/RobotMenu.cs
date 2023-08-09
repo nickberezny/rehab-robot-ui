@@ -32,6 +32,7 @@ public class RobotMenu : MonoBehaviour
         }
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
 
 
     }
@@ -44,7 +45,7 @@ public class RobotMenu : MonoBehaviour
         {
             Manager.Instance.state = Manager.states.Running;
             //load scene based on mode ->
-            Manager.Instance.LoadSceneByName("RobotGuide");
+            Manager.Instance.LoadSceneByName("CatchStuff");
         }
         else if(msg == "SET")
         {

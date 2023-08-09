@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RobotGuide.unity
     guid: 451f14b555611be369caa03265c27789
+  - enabled: 1
+    path: Assets/Scenes/Games/CatchStuff.unity
+    guid: bd2dc62df75f0b145864a77c1bf119a1
   m_configObjects: {}

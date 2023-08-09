@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,6 +24,12 @@ public class TrajectorySelectView : MonoBehaviour
         {   
             childrenParams.Add(StepView.transform.GetChild(i).gameObject);
         }
+        
+    }
+
+    private void Start()
+    {
+        changeView(0);
     }
 
 
@@ -50,6 +56,7 @@ public class TrajectorySelectView : MonoBehaviour
                 break;
 
         }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
     }
 
     public Dictionary<string, float> GetParams()

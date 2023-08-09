@@ -25,6 +25,12 @@ public class ParameterSelectView : MonoBehaviour
         {   
             childrenParams.Add(CUICView.transform.GetChild(i).gameObject);
         }
+       
+    }
+
+    private void Start()
+    {
+        changeView(0);
     }
 
 
@@ -57,6 +63,7 @@ public class ParameterSelectView : MonoBehaviour
                 break;
                 
         }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
     }
 
     public Dictionary<string, float> GetParams()
