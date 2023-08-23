@@ -7,7 +7,6 @@ public class TrajectorySelectView : MonoBehaviour
 {
 
     [SerializeField] private GameObject StepView;
-    [SerializeField] private GameObject VelView;
     [SerializeField] private RectTransform canvas;
 
     public int viewIndex = 0;
@@ -40,22 +39,22 @@ public class TrajectorySelectView : MonoBehaviour
         switch (newViewIndex)
         {
             case 0:
-		        //Debug.Log(CUICView.transform.GetChild(1));
-                SetParamsFromMode(StaticParams);
-                LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
-                break;
             case 1:
+            case 2:
+            case 3:
 		        //Debug.Log(CUICView.transform.GetChild(1));
                 SetParamsFromMode(TrajParams);
                 LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
                 break;
-            case 2:
+            case 4:
 		        //Debug.Log(CUICView.transform.GetChild(1));
                 SetParamsFromMode(StaticRandomParams);
                 LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
                 break;
 
         }
+        
+        LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
         LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
     }
 

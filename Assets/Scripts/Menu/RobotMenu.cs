@@ -14,6 +14,7 @@ public class RobotMenu : MonoBehaviour
     [SerializeField] private RectTransform canvas;
     [SerializeField] private ParameterSelectView paramView;
     [SerializeField] private TrajectorySelectView trajView;
+    [SerializeField] string nextSceneName;
 
     private void Start()
     {
@@ -28,7 +29,8 @@ public class RobotMenu : MonoBehaviour
         foreach (Button b in buttons)
         {
             b.onClick.AddListener(delegate { ButtonMessage(b.name.ToUpper()); });
-            if (b.name == "Run" || b.name == "Stop") b.interactable = false;
+            if (b.name == "Run" || b.name == "Stop" || b.name == "Next") b.interactable = false;
+
         }
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
@@ -39,17 +41,21 @@ public class RobotMenu : MonoBehaviour
 
     public void ButtonMessage(string msg)
     {
-        Client2.Instance.SendTCPMessage("ROBOT::" + msg);
+        if(msg != "NEXT") Client2.Instance.SendTCPMessage("ROBOT::" + msg);
 
-        if(msg == "RUN")
+        if (msg == "RUN")
         {
             Manager.Instance.state = Manager.states.Running;
             //load scene based on mode ->
             Manager.Instance.LoadSceneByName("CatchStuff");
         }
-        else if(msg == "SET")
+        else if (msg == "SET")
         {
             GetParams();
+        }
+        else if (msg == "NEXT")
+        {
+            Manager.Instance.LoadSceneByName(nextSceneName);
         }
     }
 
@@ -78,16 +84,14 @@ public class RobotMenu : MonoBehaviour
 
     private void CheckIfReady()
     {
-        if (finishedTasks.ContainsValue(false)) isReady = false;
-        else
+
+
+        foreach (Button b in buttons)
         {
-            isReady = true;
-            foreach (Button b in buttons)
-            {
-                if (b.name == "Run" || b.name == "Stop") b.interactable = true;
-            }
-                
+            if (b.name == "Run" || b.name == "Stop" || b.name == "Next") b.interactable = true;
         }
+                
+        
     }
 
     private void SetInitButtons(bool setVal)

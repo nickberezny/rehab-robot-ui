@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class ParameterSelectView : MonoBehaviour
 {
 
-    [SerializeField] private GameObject AdmView;
     [SerializeField] private GameObject CUICView;
     [SerializeField] private RectTransform canvas;
 
@@ -30,6 +29,10 @@ public class ParameterSelectView : MonoBehaviour
 
     private void Start()
     {
+        for (int i = 0; i < 5; i++)
+        {
+            changeView(i);
+        }
         changeView(0);
     }
 
@@ -63,7 +66,7 @@ public class ParameterSelectView : MonoBehaviour
                 break;
                 
         }
-        LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
+        StartCoroutine(rebuild());
     }
 
     public Dictionary<string, float> GetParams()
@@ -91,6 +94,18 @@ public class ParameterSelectView : MonoBehaviour
                 go.SetActive(true);
             }
         }
+    }
+
+    IEnumerator rebuild()
+    {
+        yield return new WaitForSeconds(1f);
+        Debug.Log("Rebuild!");
+        LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
+        yield return new WaitForSeconds(1f);
+
+
+
     }
 
 

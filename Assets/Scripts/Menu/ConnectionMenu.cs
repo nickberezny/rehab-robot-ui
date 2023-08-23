@@ -18,8 +18,8 @@ public class ConnectionMenu : MonoBehaviour
         _robot.interactable = false;
         _openCV.interactable = false;
 
-        _robotLED.color = _offColor;
-        _openCVLED.color = _offColor;
+        //_robotLED.color = _offColor;
+       // _openCVLED.color = _offColor;
     }
     private void Start()
     {
@@ -30,12 +30,12 @@ public class ConnectionMenu : MonoBehaviour
         if (buttonName == "ROBOT")
         {
             _robot.interactable = set;
-            _robotLED.color = Color.white;
+          //  _robotLED.color = Color.white;
         }
         else if (buttonName == "OPENCV")
         {
             _openCV.interactable = set;
-            _openCVLED.color = Color.white;
+           // _openCVLED.color = Color.white;
         }
 
     }

@@ -8,11 +8,16 @@ using System;
 public class Manager : Singleton<Manager>
 {
     public enum states { Init, WaitForConn, InitDevice, Running, Stop, Shutdown  }
+    public enum games {RobotGuide, CatchStuff, FlappyBird}
     public states state = states.Init;
+    public games gameMode = games.RobotGuide;
 
     public ConnectionMenu connectionMenu;
     public RobotMenu robotMenu;
+    public SetupMenu setupMenu;
     public RobotDataManager robotDataManager;
+
+    
 
     public IEnumerator RecieveMessage(string msg)
     {
@@ -30,7 +35,7 @@ public class Manager : Singleton<Manager>
 		        if(msg == "STOP")
 		        {
 			        state = states.InitDevice;
-			        LoadSceneByName("RobotMenu");
+			        LoadSceneByName("ActivityMenu");
 		        }
                 else
                 {
@@ -55,11 +60,13 @@ public class Manager : Singleton<Manager>
         Debug.Log("Init Msg");
         if (msg == "STARTTASK")
         {
-            robotMenu.StartingTask();
+            if (robotMenu) robotMenu.StartingTask();
+            if (setupMenu) setupMenu.StartingTask();
         }
         else
         {
-            robotMenu.FinishTask(msg);
+            if(robotMenu) robotMenu.FinishTask(msg);
+            if (setupMenu) setupMenu.FinishTask(msg);
         }
     }
 
