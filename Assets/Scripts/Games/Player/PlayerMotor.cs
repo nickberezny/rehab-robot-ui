@@ -13,6 +13,8 @@ public class PlayerMotor : MonoBehaviour
     SpriteRenderer renderer;
     Animator anim;
 
+    RobotDataManager robotDataManager;
+
     private void Awake()
     {
         xs = xstart.position;// + transform.position;
@@ -20,6 +22,7 @@ public class PlayerMotor : MonoBehaviour
 
         renderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        robotDataManager = RobotDataManager.Instance;
     }
 
     public void changePos(float xnew)
@@ -31,6 +34,8 @@ public class PlayerMotor : MonoBehaviour
 
     private void Update()
     {
+        transform.position= xs + robotDataManager.x * (xf - xs);
+
         if(animateSprite)
         {
             if (xn > xprev)
