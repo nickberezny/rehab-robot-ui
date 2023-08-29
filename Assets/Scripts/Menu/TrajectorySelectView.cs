@@ -15,6 +15,7 @@ public class TrajectorySelectView : MonoBehaviour
     List<GameObject> childrenParams = new List<GameObject>(); 
     List<string> StaticParams = new List<string> {"x0","Home","recordEMG"};
     List<string> TrajParams = new List<string> {"vmax","Home","recordEMG"};
+    List<string> SineParams = new List<string> { "Amplitude", "Frequency", "Offset", "Home", "recordEMG" };
     List<string> StaticRandomParams = new List<string> {"Home","recordEMG","Rate"};
 
     private void Awake()
@@ -39,14 +40,20 @@ public class TrajectorySelectView : MonoBehaviour
         switch (newViewIndex)
         {
             case 0:
+                SetParamsFromMode(StaticParams);
+                LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
+                break;
             case 1:
-            case 2:
-            case 3:
-		        //Debug.Log(CUICView.transform.GetChild(1));
+                //Debug.Log(CUICView.transform.GetChild(1));
                 SetParamsFromMode(TrajParams);
                 LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
                 break;
-            case 4:
+            case 2:
+                //Debug.Log(CUICView.transform.GetChild(1));
+                SetParamsFromMode(SineParams);
+                LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
+                break;
+            case 3:
 		        //Debug.Log(CUICView.transform.GetChild(1));
                 SetParamsFromMode(StaticRandomParams);
                 LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);

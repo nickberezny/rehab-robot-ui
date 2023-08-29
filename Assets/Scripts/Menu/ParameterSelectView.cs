@@ -13,10 +13,11 @@ public class ParameterSelectView : MonoBehaviour
     Dictionary<string, float> p = new Dictionary<string, float>();
     List<GameObject> childrenParams = new List<GameObject>(); 
     List<string> PDParams = new List<string> {"kp","kv"};
-    List<string> ImpParams = new List<string> {"mass","damp","Md","Bd","Kd"};
-    List<string> AdmParams = new List<string> {"kp","kv","Md","Bd","Kd"};
-    List<string> UICParams = new List<string> {"kp","kv","Md","Bd","Kd","delta","alpha"};
+    List<string> ImpParams = new List<string> {"mass","damp","Md","Bd","Kd","useFriction"};
+    List<string> AdmParams = new List<string> {"kp","kv","Md","Bd","Kd", "useFriction" };
+    List<string> UICParams = new List<string> {"kp","kv","Md","Bd","Kd","delta","alpha", "useFriction" };
     List<string> StochParams = new List<string> {"kp","kv","Fmax","PhaseTime","NumPositions","StochasticStepTime"};
+    List<string> UIACParams = new List<string> { "kp", "kv", "Md", "Bd", "Kd", "delta", "alpha", "useFriction" };
 
     private void Awake()
     {
@@ -61,10 +62,15 @@ public class ParameterSelectView : MonoBehaviour
                 LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
                 break;
             case 4:
+                SetParamsFromMode(UIACParams);
+                LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
+                break;
+            case 5:
                 SetParamsFromMode(StochParams);
                 LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
                 break;
-                
+            
+
         }
         StartCoroutine(rebuild());
     }
