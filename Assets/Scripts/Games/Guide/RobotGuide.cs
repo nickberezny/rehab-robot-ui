@@ -28,7 +28,7 @@ public class RobotGuide : MonoBehaviour
 
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         robotPos.position = xs + (robotDataManager.x)* (xf - xs);
         desiredPos.position = xs + robotDataManager.x0 * (xf - xs);
