@@ -280,7 +280,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 228153392}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1440ec8c2fdcfa4785c89de716ecedd, type: 3}
   m_Name: 
@@ -406,6 +406,7 @@ MonoBehaviour:
   start: {fileID: 1552185146}
   end: {fileID: 1319979191}
   period: 5
+  score: {fileID: 0}
 --- !u!4 &400626422
 Transform:
   m_ObjectHideFlags: 0
@@ -679,6 +680,7 @@ MonoBehaviour:
   start: {fileID: 1212668260}
   end: {fileID: 841348006}
   period: 5
+  score: {fileID: 0}
 --- !u!4 &1342831561
 Transform:
   m_ObjectHideFlags: 0
@@ -885,7 +887,7 @@ Transform:
   m_GameObject: {fileID: 1458773979}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.71, y: -0.53, z: 1}
-  m_LocalScale: {x: 6.3603196, y: 5.4069123, z: 1}
+  m_LocalScale: {x: 10.08, y: 10.74, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
