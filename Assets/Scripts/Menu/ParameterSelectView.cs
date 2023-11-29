@@ -19,6 +19,8 @@ public class ParameterSelectView : MonoBehaviour
     List<string> StochParams = new List<string> {"kp","kv","Fmax","PhaseTime","NumPositions","StochasticStepTime"};
     List<string> UIACParams = new List<string> { "kp", "kv", "Md", "Bd", "Kd", "delta", "alpha", "useFriction" };
 
+    List<string> StochTrajParams = new List<string> {"kp","kv","Md","Bd","Fmax","PhaseTime","StochasticStepTime"};
+
     private void Awake()
     {
         for(int i = 0; i < CUICView.transform.childCount; i++)
@@ -67,6 +69,10 @@ public class ParameterSelectView : MonoBehaviour
                 break;
             case 5:
                 SetParamsFromMode(StochParams);
+                LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
+                break;
+            case 6:
+                SetParamsFromMode(StochTrajParams);
                 LayoutRebuilder.ForceRebuildLayoutImmediate(canvas);
                 break;
             

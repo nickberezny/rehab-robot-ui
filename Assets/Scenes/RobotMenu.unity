@@ -7797,6 +7797,8 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Stochastic Force
       m_Image: {fileID: 0}
+    - m_Text: Stoch. Traj.  Force
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
