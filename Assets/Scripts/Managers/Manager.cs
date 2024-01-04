@@ -12,14 +12,14 @@ public class Manager : Singleton<Manager>
     public states state = states.WaitForConn;
     public games gameMode = games.RobotGuide;
 
-    public float x = 0, x0 = 0;
+    public float x = 0, x0 = 0, x0_duration = 1;
 
 
 
     public IEnumerator RecieveMessage(string msg)
     {
         //
-        Debug.Log(state);
+        //Debug.Log(state);
         switch (state)
         {
             case states.WaitForConn:
@@ -46,6 +46,7 @@ public class Manager : Singleton<Manager>
                 {
                     //des pos
                     x0 = float.Parse(data[1]);
+                    x0_duration = float.Parse(data[2]);
                 }
                 //robotDataManager.UpdatePosition(float.Parse(data[0]), float.Parse(data[1]));
                 break;

@@ -82,7 +82,7 @@ public class Client : Singleton<Client>
 					// Convert byte array to string message. 						
 					string serverMessage = Encoding.ASCII.GetString(incommingData);
 
-					Debug.Log("server message received as: " + serverMessage);
+					//Debug.Log("server message received as: " + serverMessage);
 
 					UnityMainThreadDispatcher.Instance().Enqueue(Manager.Instance.RecieveMessage(serverMessage));
 

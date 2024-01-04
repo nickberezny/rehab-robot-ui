@@ -155,6 +155,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   gameMode: 0
+  x: 0
+  x0: 0
+  x0_duration: 1
 --- !u!4 &85357080
 Transform:
   m_ObjectHideFlags: 0

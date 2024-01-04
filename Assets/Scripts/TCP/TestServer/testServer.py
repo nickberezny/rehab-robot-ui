@@ -26,7 +26,7 @@ while(state == 1):
 	print(msg)
 	if(msg == "Game"):
 		state = 2
-		connection.sendall(str.encode("RobotGuide"))
+		connection.sendall(str.encode("CatchStuff"))
 
 sleep(2)
 
@@ -34,13 +34,15 @@ connection.sendall(str.encode("run"))
 
 sleep(1)
 j = 0;
-
+dir = 1.0;
 
 for i in range(1,10000):
 	connection.sendall(str.encode("x,"+str(j)))
-	if(i%10 == 0):
-		connection.sendall(str.encode("x0,0.25"))
-	j = j + 1.0/10000.0
-	sleep(0.1)
+	if(i%100 == 0):
+		connection.sendall(str.encode("x0,"+str(j)+","+str(1)))
+	if(i > 100):
+		dir = -1.0;
+	j = j + dir*1.0/10000.0
+	sleep(0.01)
 
 
