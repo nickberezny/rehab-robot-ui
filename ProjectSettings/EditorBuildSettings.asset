@@ -6,24 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/InitScene.unity
-    guid: e8067e21af15d2545848289df45ada94
+    path: Assets/Scenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/ActivityMenu.unity
-    guid: 152c90806e096f248892026e53ba52be
+    path: Assets/Scenes/CatchStuff.unity
+    guid: c8995a058d16a504d8e8a440179cc533
   - enabled: 1
-    path: Assets/Scenes/RobotMenu.unity
-    guid: 4f6662e4096863641ae1c600d26a77a2
-  - enabled: 1
-    path: Assets/Scenes/SetupScene.unity
-    guid: 5704b3615afe7c74c9e92787970fe4ed
+    path: Assets/Scenes/FlappyBird.unity
+    guid: da3b23b9e95305b4c904bbeee5863f99
   - enabled: 1
     path: Assets/Scenes/RobotGuide.unity
-    guid: 451f14b555611be369caa03265c27789
-  - enabled: 1
-    path: Assets/Scenes/Games/CatchStuff.unity
-    guid: bd2dc62df75f0b145864a77c1bf119a1
-  - enabled: 1
-    path: Assets/Scenes/Games/FlappyBird.unity
-    guid: 0557a11db5276b342bcbc3f2d7786353
+    guid: 8d0256d9832a989409a35ecb056c1374
   m_configObjects: {}
