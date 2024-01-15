@@ -1,10 +1,17 @@
 function setButton(app)
 
+
     data = strcat("GAME::",app.GameEditField.Value);
     write(app.tcpConn,data)
     pause(0.5);
 
     data = "ROBOT::SET";
+    write(app.tcpConn,data)
+    pause(0.5);
+
+
+    data = strcat("ROBOT::",string(int8(app.x0percent.Value)));
+  
     write(app.tcpConn,data)
     pause(0.5);
 
