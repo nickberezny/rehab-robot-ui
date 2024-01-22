@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Catcher : MonoBehaviour
 {
-
+    [SerializeField] Score score;
     float x_prev = 0.0f;
     SpriteRenderer renderer;
+    
 
     private void Awake()
     {
@@ -19,6 +20,7 @@ public class Catcher : MonoBehaviour
         if(collision.transform.tag == "Fruit")
         {
             Destroy(collision.gameObject);
+            score.AddScore();
         }
     }
 

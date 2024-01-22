@@ -351,6 +351,7 @@
 "Assets/Scripts/CatchStuff/Catcher.cs"
 "Assets/Scripts/CatchStuff/FruitGenerator.cs"
 "Assets/Scripts/CatchStuff/FruitMotor.cs"
+"Assets/Scripts/CatchStuff/Score.cs"
 "Assets/Scripts/FlappyBird/GenerateObstacles.cs"
 "Assets/Scripts/FlappyBird/PipeMotor.cs"
 "Assets/Scripts/Managers/Manager.cs"
