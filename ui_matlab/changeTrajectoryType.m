@@ -12,6 +12,8 @@ function  changeTrajectoryType(app, value)
             params = app.StepParams;
         case "Sine"
             params = app.SineParams;
+        case "Ramp"
+            params = app.RampParams;
     end
 
     for i = 1:length(params)    

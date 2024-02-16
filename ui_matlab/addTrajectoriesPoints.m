@@ -26,7 +26,12 @@ function addTrajectoriesPoints(app)
             A = TrajParamButtonList(3).Value;
             A0 = TrajParamButtonList(4).Value;
             w = TrajParamButtonList(5).Value;
-            toAdd = A*sin(w*ts)+A0;
+            w0 = TrajParamButtonList(6).Value;
+            toAdd = A*sin(w*ts + w0)+A0;
+        case "Ramp"
+            x0 = TrajParamButtonList(3).Value;
+            x1 = TrajParamButtonList(4).Value;
+            toAdd = ((x1-x0)/(tf-t0))*(ts-t0) + x0;
     end
     
     for i = 1:length(data)
