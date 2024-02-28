@@ -16,6 +16,8 @@ function controlTypeDrop(app,value)
             params = app.UIAC_Params;
         case "UIC"
             params = app.UIC_Params;
+         case "Adm_Dist"
+             params = app.Adm_dist_Params;
          case "FORCE_NORM"
              params = app.Force_norm_Params;
      end
