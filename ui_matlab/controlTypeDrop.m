@@ -20,6 +20,10 @@ function controlTypeDrop(app,value)
              params = app.Adm_dist_Params;
          case "FORCE_NORM"
              params = app.Force_norm_Params;
+         case "Impedance_FFW"
+             params = app.Imp_FFW_Params;
+         case "Impedance_Accel"
+             params = app.Imp_Accel_Params;
      end
 
      app.CurrentCtlParams = params;
