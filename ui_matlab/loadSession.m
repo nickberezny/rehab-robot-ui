@@ -1,7 +1,7 @@
 function loadSession(app)
 
-    selpath = uigetdir;
-    [filepath,name,ext] = fileparts(selpath);
+    selpath = uigetdir
+    [filepath,name,ext] = fileparts(selpath)
     app.SessionPath = selpath;
     app.SessionName = name;
     app.SessionTitlePanel.Title = name;

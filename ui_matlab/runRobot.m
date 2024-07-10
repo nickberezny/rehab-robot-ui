@@ -18,7 +18,7 @@ function runRobot(app)
     write(app.tcpConn,data)
     data = read(app.tcpConn,app.tcpConn.NumBytesAvailable,"string")
 
-    for jj = 1:10
+    for jj = 1:14
         
         app.PlotData{jj} = zeros(1,1000)
 
@@ -29,9 +29,9 @@ function runRobot(app)
         data = read(app.tcpConn,app.tcpConn.NumBytesAvailable,"string");
         
         if(~isempty(data))
-            dataSplit = split(data,"::");
-            if(dataSplit(1)=="PLOT" && length(dataSplit)>9)
-                for jjj = 1:10
+            dataSplit = split(data,"::")
+            if(dataSplit(1)=="PLOT" && length(dataSplit)>11)
+                for jjj = 1:14
                     
                     vec = app.PlotData{jjj};
                     vec = [vec(2:end),str2double(dataSplit(jjj+1))];

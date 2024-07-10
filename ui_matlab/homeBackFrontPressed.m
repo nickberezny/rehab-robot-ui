@@ -7,7 +7,7 @@ function homeBackFrontPressed(app)
     %end msg == END? 
 
     i = 1;
-
+%{
     while(1) %end condition? 
         
         data = read(app.tcpConn,app.tcpConn.NumBytesAvailable,"string");
@@ -16,7 +16,7 @@ function homeBackFrontPressed(app)
             dataSplit = split(data,"::");
         end
 
-        if((dataSplit(1)=="END")
+        if((dataSplit(1)=="END"))
             break;
         else
             app.JointX1(i) = dataSplit(1);
@@ -26,7 +26,7 @@ function homeBackFrontPressed(app)
             i = i + 1;
         end
     end
-
+%}
 end
 
 
