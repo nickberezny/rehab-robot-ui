@@ -41,8 +41,8 @@ public class Manager : Singleton<Manager>
                 {
                     //state vars
                     x = float.Parse(data[1]);
-                    x0 = float.Parse(data[2]);
-                    x0_duration = float.Parse(data[3]);
+                    x0 = float.Parse(data[3]);
+                    x0_duration = float.Parse(data[4]);
                 }
                 //robotDataManager.UpdatePosition(float.Parse(data[0]), float.Parse(data[1]));
                 break;

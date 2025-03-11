@@ -24,6 +24,8 @@ function controlTypeDrop(app,value)
              params = app.Imp_FFW_Params;
          case "Impedance_Accel"
              params = app.Imp_Accel_Params;
+         case "UIC_Wall"
+             params = app.UIC_Wall_Params;
      end
 
      app.CurrentCtlParams = params;
